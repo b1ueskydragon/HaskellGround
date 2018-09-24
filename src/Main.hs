@@ -1,4 +1,8 @@
 module Main where
 
 main :: IO ()
-main = putStrLn "Hi skell"
+doubleUs x y = doubleMe x + doubleMe y
+res = doubleUs 6 18
+main = do
+        putStrLn "Hi skell"
+        print res

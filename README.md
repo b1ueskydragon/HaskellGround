@@ -7,3 +7,8 @@
 $ cd ${this_project}/src/sugohas/
 $ ghci
 ```
+
+```.hs
+-- class load after create a haskell file (e.g. use a vim)
+Prelude> :l ${hs_file_name}
+```

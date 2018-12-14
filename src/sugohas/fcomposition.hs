@@ -11,4 +11,8 @@ f2 = map (negate . abs) [-5, 3, 4]
 -- $ is right-associative
 -- f (g (z x))  ==  f $ g $ z x
 f6 = sum (filter (>10) (map (*2) [2..10]))
-f7 = sum $ filter (>10) $ map (*2) [2..10] 
+f7 = sum $ filter (>10) $ map (*2) [2..10]
+
+fn x = ceiling (negate (tan (cos (max 50 x))))
+fn' = ceiling . negate . tan . cos . max 50
+

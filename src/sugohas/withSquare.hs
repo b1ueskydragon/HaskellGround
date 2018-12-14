@@ -5,3 +5,7 @@ sqrtSums = length (takeWhile (<1000) (scanl1 (+) (map sqrt [1..]))) + 1
 
 sqrtSums' :: Int
 sqrtSums' = (+1) $ length $ takeWhile (<1000) $ scanl1 (+) $ map sqrt [1..]
+
+-- $ means that function application can be treated just like another function
+-- curried (waiting full params)
+fapp = map ($ 3) [(4+), (10*), (^2), sqrt]

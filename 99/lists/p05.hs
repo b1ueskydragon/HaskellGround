@@ -11,10 +11,10 @@ myReverse' []  = []
 myReverse' [x] = [x]
 myReverse' xs  = last xs : myReverse' (init xs)
 
--- tail rec style
+-- tail rec style. use accumulator (stack)
 myReverse'' :: [a] -> [a]
 myReverse'' xs = rec xs []
-  where rec [x] acc    = x : acc
+  where rec [] acc     = acc
         rec (x:xs) acc = rec xs (x : acc)
 
 -- TODO : fold or scan

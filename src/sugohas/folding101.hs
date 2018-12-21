@@ -24,4 +24,13 @@ map' f = foldr (\x acc -> f x : acc) []
 filter' :: (a -> Bool) -> [a] -> [a]
 filter' f = foldr (\x acc -> if f x then x : acc else acc) []
 
--- TODO: head' last'
+head' :: [a] -> a
+head' = foldr1 (\x _ -> x)
+head'' :: [a] -> a
+head'' = foldl1 (\acc _ -> acc)
+
+last' :: [a] -> a
+last' = foldl1 (\_ x -> x)
+last'' :: [a] -> a
+last'' = foldr1 (\_ acc -> acc)
+

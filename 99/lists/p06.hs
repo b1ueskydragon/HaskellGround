@@ -13,4 +13,17 @@ isPalindrome' xs = f [] xs xs
     f rev (x:xs) [_]      = rev == xs
     f rev xs []           = rev == xs
 
--- TODO: try half, zip, fold, divisor(only Integer)
+isPalindrome'' :: (Eq a) => [a] -> Bool
+isPalindrome'' xs = take half xs == reverse (drop half' xs)
+  where 
+    len   = length xs
+    half  = len `div` 2
+    half' = if odd len then len `div` 2 + 1 else half
+
+-- same as above
+isPalindrome''' :: (Eq a) => [a] -> Bool
+isPalindrome''' xs = let len = length xs in take (len `div` 2)  xs == reverse (drop (len `div` 2 + (len `mod` 2)) xs) 
+
+
+-- TODO: try zip, fold, divisor(only Integer)
+

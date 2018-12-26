@@ -24,6 +24,12 @@ isPalindrome'' xs = take half xs == reverse (drop half' xs)
 isPalindrome''' :: (Eq a) => [a] -> Bool
 isPalindrome''' xs = let len = length xs in take (len `div` 2)  xs == reverse (drop (len `div` 2 + (len `mod` 2)) xs) 
 
+-- using foldr or foldl with accumulator True, it helps avoid empty list error.
+isPalindrome'''' :: (Eq a) => [a] -> Bool
+isPalindrome'''' xs = foldr (&&) True $ zipWith (==) xs (reverse xs) 
 
--- TODO: try zip, fold, divisor(only Integer)
-
+-- same as above
+-- and :: Foldable t => t Bool -> Bool 
+isPalindrome''''' :: (Eq a) => [a] -> Bool
+isPalindrome''''' xs = and $ zipWith (==) xs (reverse xs)
+ 

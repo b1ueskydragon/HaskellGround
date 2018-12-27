@@ -32,4 +32,7 @@ isPalindrome'''' xs = foldr (&&) True $ zipWith (==) xs (reverse xs)
 -- and :: Foldable t => t Bool -> Bool 
 isPalindrome''''' :: (Eq a) => [a] -> Bool
 isPalindrome''''' xs = and $ zipWith (==) xs (reverse xs)
+
+isPalindrome'''''' :: (Eq a) => [a] -> Bool
+isPalindrome'''''' xs = let tuple = splitAt (length xs `div` 2) xs in fst tuple == reverse (drop (length xs `mod` 2) (snd tuple))
  

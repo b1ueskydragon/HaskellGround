@@ -23,4 +23,16 @@ flatten' :: NestedList a -> [a]
 flatten' (Elem x) = [x]
 flatten' (List x) = x >>= flatten'
 
+-- foldr
+-- only folding if x is `List` 
+{-
+e.g.)
+foldr (++) [] [[1,2,3]] == [1,2,3]
+foldr (++) [] [[1,2,3], [4,5]] == [1,2,3,4,5]
+
+Remarks, [1, [2, [3, 4], 5]] is a type error.
+ -}
+flatten'' :: NestedList a -> [a]
+flatten'' (Elem x) = [x]
+flatten'' (List x) = foldr (++) [] (map flatten'' x)
 

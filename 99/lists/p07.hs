@@ -36,3 +36,13 @@ flatten'' :: NestedList a -> [a]
 flatten'' (Elem x) = [x]
 flatten'' (List x) = foldr (++) [] (map flatten'' x)
 
+-- inner recursion, start with empty accumulator
+-- : is much more cheaper than ++
+flatten''' :: NestedList a -> [a]
+flatten''' = reverse . stk []
+  where
+    stk acc (List [])     = acc
+    stk acc (Elem x)      = x:acc
+    stk acc (List (x:xs)) = stk (stk acc x) (List xs)
+--  stk acc (List (x:xs)) = stk acc (List xs) ++ stk acc x
+

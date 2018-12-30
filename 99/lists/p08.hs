@@ -7,4 +7,8 @@ compress "aaabccaadeeee"
 
 -- foldr
 compress :: (Eq a) => [a] -> [a]
-compress (x:xs) = foldr (\x acc -> if x == (head acc) then acc else x:acc) [x] xs
+compress = foldr f []
+  where
+    f x []  = [x]
+    f x acc = if (head acc) /= x then x:acc else acc
+

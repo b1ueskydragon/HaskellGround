@@ -4,7 +4,6 @@
 -- fl (accumulator, current)   \acc x -> ...  fold the list up from the left side
 -- fr (current, accumulator)   \x acc -> ...  fold from the right side
 -- accumulator is a starting value, current is a current value.
--- example of the current value: head or last of the list
 
 -- curried
 

@@ -26,5 +26,8 @@ compress'' = reverse . r []
     r acc [x]    = x:acc
     r acc (x:xs) = if x == (head xs) then r acc xs else r (x:acc) xs
 
+compress''' :: Eq a => [a] -> [a]
+compress''' []     = [] 
+compress''' (x:xs) = x : compress'''(dropWhile (==x) xs)
+
 -- TODO another folding
--- TODO drop or take

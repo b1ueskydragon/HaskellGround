@@ -1,16 +1,20 @@
 {-
-Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists.
+Pack consecutive duplicates of list elements into sublists.
+If a list contains repeated elements they should be placed in separate sublists.
 
-pack ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e']
-["aaaa","b","cc","aa","d","eeee"]
+  pack ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e']
+  ["aaaa","b","cc","aa","d","eeee"]
+
+Remarks,
+  ['a'] == "a"
 -}
 
 -- recursive
 pack :: (Eq a) => [a] -> [[a]]
-pack xs = f xs [] [[]]
+pack xs = reverse (f xs [] [])
   where
-    f [] _ res       = res
-    f [x] _ _        = [[x]]
-    f (x:xs) acc res = if x == head xs then f xs (x:acc) res else f xs acc (acc:res)
+    f [] sub res     = sub:res
+    f (x:xs) sub res = if sub == [] || x == head sub then f xs (x:sub) res else f xs [x] (sub:res)
 
--- foldr or foldl
+-- TODO: fold, split, more recursion and so on
+

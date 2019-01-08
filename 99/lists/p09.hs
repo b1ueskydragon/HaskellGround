@@ -24,5 +24,11 @@ pack' = reverse . f []
     f res [] = res
     f res xs = f ((takeWhile (== head xs) xs):res) (dropWhile (== head xs) xs)
 
--- TODO: fold, split, more recursion and so on
+pack'' :: (Eq a) => [a] -> [[a]]
+pack'' = foldr f []
+  where
+    f x []          = [[x]]
+    f x (stack:acc) = if x == head stack then ((x:stack):acc) else ([x]:stack:acc)
+
+-- TODO: split, more recursion and so on
 

@@ -30,5 +30,12 @@ pack'' = foldr f []
     f x []          = [[x]]
     f x (stack:acc) = if x == head stack then ((x:stack):acc) else ([x]:stack:acc)
 
+pack''' :: (Eq a) => [a] -> [[a]]
+pack''' = f []
+  where
+    f res [] = reverse res
+    f res xs = f (fst s : res) (snd s)
+      where s = span (== head xs) xs
+
 -- TODO: split, more recursion and so on
 

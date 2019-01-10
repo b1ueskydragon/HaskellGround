@@ -10,6 +10,8 @@ Remarks,
    Nil of [[]] is []
 -}
 
+import Data.List
+
 -- recursive
 pack :: (Eq a) => [a] -> [[a]]
 pack xs = reverse (f xs [] [])
@@ -36,6 +38,10 @@ pack''' = f []
     f res [] = reverse res
     f res xs = f (fst s : res) (snd s)
       where s = span (== head xs) xs
+
+-- Data.List - same as above
+pack'''' :: (Eq a) => [a] -> [[a]]
+pack'''' = group 
 
 -- TODO: split, more recursion and so on
 

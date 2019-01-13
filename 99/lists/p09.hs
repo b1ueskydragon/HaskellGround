@@ -43,5 +43,9 @@ pack''' = f []
 pack'''' :: (Eq a) => [a] -> [[a]]
 pack'''' = group 
 
--- TODO: split, more recursion and so on
+pack''''' :: (Eq a) => [a] -> [[a]]
+pack''''' [] = []
+pack''''' (x:xs) = (x:acc) : (pack''''' rest)
+  where
+    (acc, rest) = maybe (xs,[]) (\i -> splitAt i xs) (findIndex (/=x) xs)
 

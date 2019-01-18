@@ -15,3 +15,8 @@ encode :: (Eq a) => [a] -> [(Int, a)]
 -- encode xs = map (\x -> (length x, head x)) (group xs)
 encode = map (\x -> (length x, head x)) . group
 
+encode' :: (Eq a) => [a] -> [(Int, a)]
+encode' = foldr f []
+  where
+    f x []       = (1, x) : [] 
+    f x (h:tail) = if x == snd h then (fst h + 1, x) : tail else (1, x) : h : tail

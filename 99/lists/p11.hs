@@ -12,7 +12,7 @@ import Data.List
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode = map (\x -> (length x, head x)) . group
 
-data Pair a = Single a | Multiple Int a deriving (Show, Ord, Eq)
+data Pair a = Single a | Multiple Int a deriving (Show, Eq)
 
 encodeModified :: (Eq a) => [a] -> [Pair a]
 encodeModified = map (\x -> if fst x == 1 then Single (snd x) else Multiple (fst x) (snd x)) . encode
@@ -23,3 +23,12 @@ encodeModified' = foldr f []
     f x []                    = [Single x]
     f x (Single v : tail)     = if x == v then Multiple 2 x : tail else Single x : Single v : tail
     f x (Multiple c v : tail) = if x == v then Multiple (c+1) v : tail else Single x : Multiple c v : tail
+
+-- refactor
+encodeModified'' :: (Eq a) => [a] -> [Pair a]
+encodeModified'' = foldr f []
+  where
+    f x []                           = [Single x]
+    f x (h:tail) | Single v <- h     = if x == v then Multiple 2 x : tail else Single x : h : tail
+                 | Multiple c v <- h = if x == v then Multiple (c+1) v : tail else Single x : h : tail
+

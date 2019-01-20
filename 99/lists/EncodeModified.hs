@@ -15,6 +15,13 @@ data Pair a = Single a | Multiple Int a deriving (Show, Eq)
 encodeModified :: (Eq a) => [a] -> [Pair a]
 encodeModified = map (\x -> if fst x == 1 then Single (snd x) else Multiple (fst x) (snd x)) . Encode.encode
 
+-- refactor
+encodeModified''' :: (Eq a) => [a] -> [Pair a]
+encodeModified''' = map f . Encode.encode
+  where
+    f (1,x) = Single x
+    f (n,x) = Multiple n x
+
 encodeModified' :: (Eq a) => [a] -> [Pair a]
 encodeModified' = foldr f []
   where

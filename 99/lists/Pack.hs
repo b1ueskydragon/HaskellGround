@@ -10,6 +10,8 @@ Remarks,
    Nil of [[]] is []
 -}
 
+module Pack where
+
 import Data.List
 
 -- recursive

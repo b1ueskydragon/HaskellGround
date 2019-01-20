@@ -8,10 +8,16 @@ encode "aaaabccaadeeee"
 [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
 -}
 
+module Encode where
+
 import Data.List
+import Pack
 
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode = map (\x -> (length x, head x)) . group
+
+encode'''' :: (Eq a) => [a] -> [(Int, a)]
+encode'''' = map (\x -> (length x, head x)) . Pack.pack
 
 encode' :: (Eq a) => [a] -> [(Int, a)]
 encode' xs = let gs = group xs in zip (map (length) gs) (map (head) gs)

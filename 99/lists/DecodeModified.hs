@@ -17,6 +17,12 @@ decodeModified = foldr f []
     f x acc | Single v <- x     = v:acc
             | Multiple c v <- x = replicate c v ++ acc 
 
+decodeModified'' :: [Pair a] -> [a]
+decodeModified'' = concatMap f
+  where
+    f x | Single v <- x     = [v]
+        | Multiple c v <- x = replicate c v
+
 decodeModified' :: (Eq a) => [Pair a] -> [a]
 decodeModified' = reverse . rec []
   where

@@ -23,4 +23,13 @@ encodeDirect xs = (if cnt > 1 then Multiple cnt x else Single x) : encodeDirect 
     (p1, p2) = span (==x) xs -- entire xs required
     cnt      = length p1
 
--- TODO takewhile
+encodeDirect' :: Eq a => [a] -> [Pair a]
+encodeDirect' = acc
+  where
+    acc [] = []
+    acc xs = (if c > 1 then Multiple c h else Single h) : acc (drop c xs) 
+      where
+         l = takeWhile (== head xs) xs
+         h = head l
+         c = length l
+

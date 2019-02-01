@@ -31,3 +31,9 @@ decodeModified' = reverse . rec []
                      | Multiple c v <- h = if c==2 then rec (v:v:acc) tail
                                            else rec (v:acc) ((Multiple (c-1) v):tail)
 
+decodeModified''' :: [Pair a] -> [a]
+decodeModified''' xs = xs >>= f
+  where
+    f (Single v)     = [v]
+    f (Multiple c v) = replicate c v
+

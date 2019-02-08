@@ -15,3 +15,6 @@ repli (x:xs) c = f c x ++ repli xs c
 repli' :: [a] -> Int -> [a]
 repli' xs n = xs >>= replicate n
 
+repli'' :: [a] -> Int -> [a]
+repli'' xs n = concatMap (replicate n) xs
+

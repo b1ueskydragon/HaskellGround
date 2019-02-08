@@ -18,3 +18,6 @@ dupli' = foldr (\x acc -> x:x:acc) []
 dupli'' :: [a] -> [a]
 dupli'' xs = xs >>= (\x -> [x,x])
 
+dupli''' :: [a] -> [a]
+dupli''' = concatMap (\x -> [x,x])
+

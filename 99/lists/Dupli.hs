@@ -16,5 +16,5 @@ dupli' = foldr (\x acc -> x:x:acc) []
 
 -- bind (flatMap)
 dupli'' :: [a] -> [a]
-dupli'' xs = let f = \x -> [x,x] in xs >>= f
+dupli'' xs = xs >>= (\x -> [x,x])
 

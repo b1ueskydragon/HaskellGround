@@ -18,3 +18,18 @@ repli' xs n = xs >>= replicate n
 repli'' :: [a] -> Int -> [a]
 repli'' xs n = concatMap (replicate n) xs
 
+repli''' :: [a] -> Int -> [a]
+repli''' xs n = foldl f [] xs
+  where f acc x = acc ++ map (\_ -> x) [1..n]
+
+repli'''' :: [a] -> Int -> [a]
+repli'''' xs n = foldr f [] xs
+  where f x acc = (stack n) ++ acc
+                  where
+                    stack 0 = []
+                    stack n = x : stack (n-1)
+
+repli''''' :: [a] -> Int -> [a]
+repli''''' [] _     = []
+repli''''' (x:xs) n = foldr (const (x:)) (repli''''' xs n) [1..n]
+

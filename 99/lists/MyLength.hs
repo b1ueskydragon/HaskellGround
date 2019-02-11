@@ -24,3 +24,6 @@ myLength''' = sum . map(\_ -> 1)
 myLength'''' :: [a] -> Int
 myLength'''' = fst . last . zip [1..]
 
+myLength''''' :: [a] -> Int
+myLength''''' = foldr (const (+1)) 0
+

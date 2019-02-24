@@ -1,11 +1,15 @@
--- Eliminate consecutive duplicates of list elements.
-
 {-
+Eliminate consecutive duplicates of list elements.
+
 compress "aaabccaadeeee"
 "abcade"
 -}
 
+module Compress where
+
 -- foldr
+-- not so efficient, because
+-- it pushes the whole input onto the "stack" before doing anything else
 compress :: (Eq a) => [a] -> [a]
 compress = foldr f []
   where

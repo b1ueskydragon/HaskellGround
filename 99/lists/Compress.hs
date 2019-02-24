@@ -34,4 +34,10 @@ compress''' :: Eq a => [a] -> [a]
 compress''' []     = [] 
 compress''' (x:xs) = x : compress'''(dropWhile (==x) xs)
 
--- TODO another folding
+-- (const []) is an init acc
+-- erase Maybe
+compress'''' xs = foldr f (const []) xs Nothing
+  where
+    f x acc a@(Just x') | x == x' = acc a
+    f x acc _                     = x : acc (Just x)
+
